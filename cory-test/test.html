@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+</head>
+<body>
+
+		<section>
+			<div id = "userText">
+			</div>
+
+			<!-- Word Readout container -->
+			<div class="row">
+				<div class="col-xs-12, col-sm-12, col-md-12, col-lg-12">
+					<div id="hold">
+					</div>
+				</div>
+			</div>
+
+			<div id = "display"></div>
+
+			<div id = "guesses"></div>
+
+			<!-- Button container for Hint and Reset -->
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-6, col-sm-6, col-md-6, col-lg-6">
+						<button id="hint">Hint</button>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	<script type="text/javascript">
+		
+		var userInput = '';
+		var wordArray = ['test', 'tester', 'testertest'];
+		var randomWord = wordArray[Math.floor(Math.random() * wordArray.length)];
+		var word = randomWord.split([]);
+		var guessArray = [];
+		var guesses = 10;
+		var answersArray = [];
+
+		//display word length
+		window.onload = function() {
+			for (var i = 0; i < word.length; i++) {
+				answersArray[i] = "_";
+			}
+
+			document.getElementById("hold").innerHTML = answersArray.join(' ');
+		}
+
+		//store user input into userArray
+		document.onkeyup = function(input) {
+
+			//var input = input key
+			var userInput = (input.key).toLowerCase();
+
+				//record countdown
+				if (input.key) {
+					guesses--;
+
+					//guess push user input 
+
+					if (guesses === 0) {
+						alert("GAME OVER!")
+					}
+				}
+
+				for (var i = 0; i < word.length; i++) {
+					if (userInput === word[i]) {
+
+						answersArray[i] = word[i];
+					}
+				}
+
+				// if (answersArray.length === word.length) {
+				// 	alert("YOU WIN!")
+				// }
+
+				//display guesses in HTML
+				document.getElementById("userText").innerHTML = answersArray.join(' ');
+
+				document.getElementById("display").innerHTML = userInput;
+
+				//display guesses left in HTML
+				document.getElementById("guesses").innerHTML = guesses;
+		}
+
+	</script>
+
+</body>
+</html>

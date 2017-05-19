@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+</head>
+<body>
+
+	<h1>Hangman</h1>
+
+	<div class="answer">_</div>
+
+	<script type="text/javascript">
+		var words =[
+		"warcraft",
+		"goldensun",
+		"supermario",
+		"banjokazooie",
+		];
+
+		var answerArray = [];
+
+		//RNG for word
+		var word = words[Math.floor(Math.random() * words.length)];
+
+		//answer array
+		window.onload function () {
+			for (var i = 0; i < word.length; i++) {
+				answerArray[i] = " ";
+			}
+
+			document.getElementById("answer").innerHTML = answerArray.join(' ');
+		}
+
+		//lives counter
+		var remainingLetters = word.length;
+
+		//input
+		while (remainingLetters > 0) {
+
+			var guess = prompt("Guess a letter");
+
+				if (guess.length !== 1) {
+					alert("Please use a single letter!");
+				} else for (var j = 0; j < word.length; j++) {
+					if (word[j] === guess) {
+						answerArray[j] = guess;
+							remainingLetters--;
+					}
+
+				}
+
+		}
+
+		alert("YOU WIN!");
+
+	</script>
+
+</body>
+</html>	
